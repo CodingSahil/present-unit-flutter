@@ -4,7 +4,6 @@ import 'dart:io';
 
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:present_unit_flutter/helper-widgets/text-field/labled_textform_field.dart';
 import 'package:present_unit_flutter/helpers/colors/app_color.dart';
 import 'package:present_unit_flutter/helpers/extension/double_widget.dart';
@@ -48,13 +47,13 @@ Future<dynamic> showCommonBottomSheet({
                   Container(
                     alignment: Alignment.center,
                     width: MediaQuery.sizeOf(context).width,
-                    padding: EdgeInsets.symmetric(vertical: 28.h),
+                    padding: EdgeInsets.symmetric(vertical: 28),
                     child: title.textWidget(fontSize: 16, color: AppColors.primaryColor),
                   ),
                   Divider(color: AppColors.black.withAlpha((255 * 0.5).toInt()), thickness: 0.5, height: 1),
                   Expanded(
                     child: ListView(
-                      padding: EdgeInsets.symmetric(vertical: 28.h, horizontal: 20.w),
+                      padding: EdgeInsets.symmetric(vertical: 28, horizontal: 20),
                       children: listOfItems
                           .map(
                             (item) => Column(
@@ -103,10 +102,10 @@ Future<dynamic> showCommonBottomSheet({
                       },
                       child: Container(
                         alignment: Alignment.center,
-                        decoration: BoxDecoration(color: AppColors.primaryColor, borderRadius: BorderRadius.circular(15.r)),
+                        decoration: BoxDecoration(color: AppColors.primaryColor, borderRadius: BorderRadius.circular(15)),
                         width: MediaQuery.sizeOf(context).width,
-                        margin: EdgeInsets.symmetric(horizontal: 50.w, vertical: 16.h),
-                        padding: EdgeInsets.symmetric(vertical: 16.h),
+                        margin: EdgeInsets.symmetric(horizontal: 50, vertical: 16),
+                        padding: EdgeInsets.symmetric(vertical: 16),
                         child: 'Submit'.textWidget(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.white),
                       ),
                     ),
@@ -140,13 +139,13 @@ Future<dynamic> showCommonBottomSheetWithCheckBox({
                   Container(
                     alignment: Alignment.center,
                     width: MediaQuery.sizeOf(context).width,
-                    padding: EdgeInsets.symmetric(vertical: 28.h),
+                    padding: EdgeInsets.symmetric(vertical: 28),
                     child: title.textWidget(fontSize: 16, color: AppColors.primaryColor),
                   ),
                   Divider(color: AppColors.black.withAlpha((255 * 0.5).toInt()), thickness: 0.5, height: 1),
                   Expanded(
                     child: ListView(
-                      padding: EdgeInsets.symmetric(vertical: 28.h, horizontal: 20.w),
+                      padding: EdgeInsets.symmetric(vertical: 28, horizontal: 20),
                       children: listOfItems
                           .map(
                             (item) => Column(
@@ -206,10 +205,10 @@ Future<dynamic> showCommonBottomSheetWithCheckBox({
                     },
                     child: Container(
                       alignment: Alignment.center,
-                      decoration: BoxDecoration(color: AppColors.primaryColor, borderRadius: BorderRadius.circular(15.r)),
+                      decoration: BoxDecoration(color: AppColors.primaryColor, borderRadius: BorderRadius.circular(15)),
                       width: MediaQuery.sizeOf(context).width,
-                      margin: EdgeInsets.symmetric(horizontal: 50.w, vertical: 16.h),
-                      padding: EdgeInsets.symmetric(vertical: 16.h),
+                      margin: EdgeInsets.symmetric(horizontal: 50, vertical: 16),
+                      padding: EdgeInsets.symmetric(vertical: 16),
                       child: 'Submit'.textWidget(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.white),
                     ),
                   ),
@@ -284,19 +283,19 @@ Future<dynamic> showAddEditStudentBottomSheet({
       return StatefulBuilder(
         builder: (context, setState) => Column(
           mainAxisSize: MainAxisSize.min,
-          spacing: 12.h,
+          spacing: 12,
           children: [
             Container(
               alignment: Alignment.center,
               width: MediaQuery.sizeOf(context).width,
-              padding: EdgeInsets.symmetric(vertical: 28.h),
+              padding: EdgeInsets.symmetric(vertical: 28),
               child: title.textWidget(fontSize: 16, color: AppColors.primaryColor),
             ),
             Divider(color: AppColors.black.withAlpha((255 * 0.5).toInt()), thickness: 0.5, height: 1),
-            SizedBox(height: 24.h),
+            SizedBox(height: 24),
             Expanded(
               child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: 50.w),
+                padding: EdgeInsets.symmetric(horizontal: 50),
                 children: [
                   LabeledTextFormField(
                     controller: rollNumberController,
@@ -417,13 +416,13 @@ Future<dynamic> showAddEditStudentBottomSheet({
                     },
                     child: Container(
                       alignment: Alignment.center,
-                      decoration: BoxDecoration(color: AppColors.primaryColor, borderRadius: BorderRadius.circular(15.r)),
+                      decoration: BoxDecoration(color: AppColors.primaryColor, borderRadius: BorderRadius.circular(15)),
                       width: MediaQuery.sizeOf(context).width,
                       margin: EdgeInsets.symmetric(
-                        // horizontal: 50.w,
-                        vertical: 16.h,
+                        // horizontal: 50,
+                        vertical: 16,
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 16.h),
+                      padding: EdgeInsets.symmetric(vertical: 16),
                       child: 'Submit'.textWidget(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.white),
                     ),
                   ),

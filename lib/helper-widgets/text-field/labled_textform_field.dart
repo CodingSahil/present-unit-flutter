@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:present_unit_flutter/helpers/assets_path/assets_path.dart';
 import 'package:present_unit_flutter/helpers/colors/app_color.dart';
@@ -14,9 +13,7 @@ class LabeledTextFormField extends StatefulWidget {
     required this.hintText,
     this.textInputType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
-    this.contentPadding = const EdgeInsets.symmetric(
-      horizontal: 20,
-    ),
+    this.contentPadding = const EdgeInsets.symmetric(horizontal: 20),
     this.errorMessage,
     this.onEditingComplete,
     this.enable = true,
@@ -89,25 +86,14 @@ class _LabeledTextFormFieldState extends State<LabeledTextFormField> {
       obscuringCharacter: '*',
       onEditingComplete: widget.onEditingComplete,
       inputFormatters: widget.isAmountField
-          ? <TextInputFormatter>[
-              LengthLimitingTextInputFormatter(8),
-              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-            ]
+          ? <TextInputFormatter>[LengthLimitingTextInputFormatter(8), FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))]
           : widget.textInputType == TextInputType.emailAddress
-              ? <TextInputFormatter>[
-                  AllLowerCaseCaseTextFormatter(),
-                ]
-              : widget.textInputType == TextInputType.phone
-                  ? <TextInputFormatter>[
-                      LengthLimitingTextInputFormatter(10),
-                    ]
-                  : widget.textInputType == TextInputType.url
-                      ? <TextInputFormatter>[
-                          AllLowerCaseCaseTextFormatter(),
-                        ]
-                      : <TextInputFormatter>[
-                          UpperCaseTextFormatter(),
-                        ],
+          ? <TextInputFormatter>[AllLowerCaseCaseTextFormatter()]
+          : widget.textInputType == TextInputType.phone
+          ? <TextInputFormatter>[LengthLimitingTextInputFormatter(10)]
+          : widget.textInputType == TextInputType.url
+          ? <TextInputFormatter>[AllLowerCaseCaseTextFormatter()]
+          : <TextInputFormatter>[UpperCaseTextFormatter()],
       onTap: widget.onTap,
       style: AppTextTheme.defaultTextStyle(
         fontWeight: FontWeight.normal,
@@ -118,139 +104,89 @@ class _LabeledTextFormFieldState extends State<LabeledTextFormField> {
         contentPadding: widget.contentPadding,
         filled: !widget.enable,
         fillColor: Colors.transparent,
-        labelText: widget.labelText != null && widget.labelText!.isNotEmpty ? '${widget.labelText} ${widget.isOptionalFields ? '(Optional)' : ''}' : null,
+        labelText: widget.labelText != null && widget.labelText!.isNotEmpty
+            ? '${widget.labelText} ${widget.isOptionalFields ? '(Optional)' : ''}'
+            : null,
         hintText: widget.hintText,
         errorText: widget.isError ? widget.errorMessage ?? '${widget.hintText} is required' : null,
         errorMaxLines: 5,
-        errorStyle: AppTextTheme.defaultTextStyle(
-          fontWeight: FontWeight.normal,
-          fontSize: 24,
-          color: AppColors.red,
-        ),
+        errorStyle: AppTextTheme.defaultTextStyle(fontWeight: FontWeight.normal, fontSize: 24, color: AppColors.red),
         prefixText: widget.isCurrencyBeforeText ? '₹ ' : null,
         prefixStyle: TextStyle(
           color: widget.showRedTextColor ? AppColors.red : AppColors.lightTextColor.withAlpha((255 * 0.5).toInt()),
         ),
-        labelStyle: AppTextTheme.defaultTextStyle(
-          fontWeight: FontWeight.normal,
-          fontSize: 24,
-          color: AppColors.black,
-        ),
+        labelStyle: AppTextTheme.defaultTextStyle(fontWeight: FontWeight.normal, fontSize: 24, color: AppColors.black),
         hintStyle: AppTextTheme.defaultTextStyle(
           fontWeight: FontWeight.normal,
           fontSize: 24,
-          color: AppColors.black.withAlpha(
-            (255 * 0.5).toInt(),
-          ),
+          color: AppColors.black.withAlpha((255 * 0.5).toInt()),
         ),
         suffixIcon: widget.suffix != null
             ? widget.suffix!
             : widget.isCancel
-                ? GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: widget.onClose,
-                    child: Icon(
-                      Icons.cancel,
-                      color: AppColors.red,
-                      size: 28.h,
-                    ),
-                  )
-                : widget.isPasswordField
-                    ? GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        onTap: () {
-                          setState(() => isEyeOpen = !isEyeOpen);
-                        },
-                        child: isEyeOpen
-                            ? Container(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 24.h,
-                                  horizontal: 8.w,
-                                ),
-                                height: 30.h,
-                                width: 30.w,
-                                child: SvgPicture.asset(
-                                  AssetsPaths.eyeOpenSVG,
-                                  // height: Dimens.height24,
-                                  // width: Dimens.width24,
-                                  colorFilter: ColorFilter.mode(
-                                    AppColors.black.withAlpha(
-                                      (255 * 0.75).toInt(),
-                                    ),
-                                    BlendMode.srcIn,
-                                  ),
-                                ),
-                              )
-                            : Container(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 24.h,
-                                  horizontal: 8.w,
-                                ),
-                          height: 30.h,
-                          width: 30.w,
-                                child: SvgPicture.asset(
-                                  AssetsPaths.eyeCloseSVG,
-                                  // height: Dimens.height24,
-                                  // width: Dimens.width24,
-                                  colorFilter: ColorFilter.mode(
-                                    AppColors.black.withAlpha(
-                                      (255 * 0.75).toInt(),
-                                    ),
-                                    BlendMode.srcIn,
-                                  ),
-                                ),
-                              ),
+            ? GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: widget.onClose,
+                child: Icon(Icons.cancel, color: AppColors.red, size: 28),
+              )
+            : widget.isPasswordField
+            ? GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  setState(() => isEyeOpen = !isEyeOpen);
+                },
+                child: isEyeOpen
+                    ? Container(
+                        padding: EdgeInsets.symmetric(vertical: 24, horizontal: 8),
+                        height: 30,
+                        width: 30,
+                        child: SvgPicture.asset(
+                          AssetsPaths.eyeOpenSVG,
+                          // height: Dimens.height24,
+                          // width: Dimens.width24,
+                          colorFilter: ColorFilter.mode(AppColors.black.withAlpha((255 * 0.75).toInt()), BlendMode.srcIn),
+                        ),
                       )
-                    : null,
+                    : Container(
+                        padding: EdgeInsets.symmetric(vertical: 24, horizontal: 8),
+                        height: 30,
+                        width: 30,
+                        child: SvgPicture.asset(
+                          AssetsPaths.eyeCloseSVG,
+                          // height: Dimens.height24,
+                          // width: Dimens.width24,
+                          colorFilter: ColorFilter.mode(AppColors.black.withAlpha((255 * 0.75).toInt()), BlendMode.srcIn),
+                        ),
+                      ),
+              )
+            : null,
         floatingLabelBehavior: FloatingLabelBehavior.auto,
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(
-            20.r,
-          ),
+          borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide(
             color: widget.showBorder ? AppColors.primaryColor : AppColors.transparent,
-            width: widget.showBorder ? 1.w : 0,
+            width: widget.showBorder ? 1 : 0,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(
-            20.r,
-          ),
+          borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide(
             color: widget.showBorder
                 ? widget.isError
-                    ? AppColors.red
-                    : AppColors.lightTextColor.withAlpha((255 * 0.5).toInt())
+                      ? AppColors.red
+                      : AppColors.lightTextColor.withAlpha((255 * 0.5).toInt())
                 : AppColors.transparent,
-            width: widget.showBorder ? 1.w : 0,
+            width: widget.showBorder ? 1 : 0,
           ),
         ),
-        disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(
-            20.r,
-
-          ),
-          borderSide: BorderSide.none,
-        ),
+        disabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: BorderSide.none),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(
-            20.r,
-
-          ),
-          borderSide: BorderSide(
-            color: AppColors.red,
-            width: 1.w,
-          ),
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(color: AppColors.red, width: 1),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(
-            20.r,
-
-          ),
-          borderSide: BorderSide(
-            color: AppColors.red,
-            width: 1.w,
-          ),
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(color: AppColors.red, width: 1),
         ),
       ),
     );
@@ -259,53 +195,29 @@ class _LabeledTextFormFieldState extends State<LabeledTextFormField> {
 
 class UpperCaseTextFormatter extends TextInputFormatter {
   @override
-  TextEditingValue formatEditUpdate(
-    TextEditingValue oldValue,
-    TextEditingValue newValue,
-  ) {
-    return TextEditingValue(
-      text: capitalize(newValue.text),
-      selection: newValue.selection,
-    );
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    return TextEditingValue(text: capitalize(newValue.text), selection: newValue.selection);
   }
 }
 
 class NormalCaseTextFormatter extends TextInputFormatter {
   @override
-  TextEditingValue formatEditUpdate(
-    TextEditingValue oldValue,
-    TextEditingValue newValue,
-  ) {
-    return TextEditingValue(
-      text: newValue.text,
-      selection: newValue.selection,
-    );
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    return TextEditingValue(text: newValue.text, selection: newValue.selection);
   }
 }
 
 class AllUpperCaseTextFormatter extends TextInputFormatter {
   @override
-  TextEditingValue formatEditUpdate(
-    TextEditingValue oldValue,
-    TextEditingValue newValue,
-  ) {
-    return TextEditingValue(
-      text: newValue.text.toUpperCase(),
-      selection: newValue.selection,
-    );
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    return TextEditingValue(text: newValue.text.toUpperCase(), selection: newValue.selection);
   }
 }
 
 class AllLowerCaseCaseTextFormatter extends TextInputFormatter {
   @override
-  TextEditingValue formatEditUpdate(
-    TextEditingValue oldValue,
-    TextEditingValue newValue,
-  ) {
-    return TextEditingValue(
-      text: newValue.text.toLowerCase(),
-      selection: newValue.selection,
-    );
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    return TextEditingValue(text: newValue.text.toLowerCase(), selection: newValue.selection);
   }
 }
 

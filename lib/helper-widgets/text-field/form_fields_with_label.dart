@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:present_unit_flutter/helpers/colors/app_color.dart';
 import 'package:present_unit_flutter/helpers/extension/double_widget.dart';
 import 'package:present_unit_flutter/helpers/extension/string_widget.dart';
@@ -38,7 +37,7 @@ class _AppTextFormFieldsWithLabelState extends State<AppTextFormFieldsWithLabel>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.only(left: 6.w),
+          padding: EdgeInsets.only(left: 6),
           child: widget.hintText.textWidget(fontSize: 14, color: AppColors.black),
         ),
         12.height,
