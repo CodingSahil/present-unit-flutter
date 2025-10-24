@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:present_unit_flutter/helpers/colors/app_color.dart';
 import 'package:present_unit_flutter/helpers/extension/string_widget.dart';
+import 'package:present_unit_flutter/main.dart';
 
 class ClickablePrimaryButton extends StatelessWidget {
   const ClickablePrimaryButton({
@@ -37,10 +37,10 @@ class ClickablePrimaryButton extends StatelessWidget {
         width: width,
         height: height ?? MediaQuery.sizeOf(context).height * 0.055,
         decoration: BoxDecoration(
-          color: disableButton ? AppColors.disableButtonBgColor : (buttonColor ?? AppColors.primaryColor),
+          color: disableButton ? getColorScheme(context).onSurfaceVariant : (buttonColor ?? getColorScheme(context).primary),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: disableButton ? AppColors.disableButtonBgColor : (buttonColor ?? AppColors.primaryColor),
+            color: disableButton ? getColorScheme(context).onSurfaceVariant : (buttonColor ?? getColorScheme(context).primary),
             width: 1.5,
           ),
         ),
@@ -49,7 +49,7 @@ class ClickablePrimaryButton extends StatelessWidget {
             ? loader
             : label.textWidget(
                 fontSize: labelFontSize,
-                color: disableButton ? AppColors.white : (fontColor ?? AppColors.white),
+                color: disableButton ? getColorScheme(context).surface : (fontColor ?? getColorScheme(context).surface),
                 fontWeight: FontWeight.w800,
               ),
       ),
@@ -92,10 +92,10 @@ class BorderButton extends StatelessWidget {
         width: width,
         height: height ?? MediaQuery.sizeOf(context).height * 0.055,
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: getColorScheme(context).surface,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: disableButton ? AppColors.disableButtonBgColor : (borderColor ?? (fontColor ?? AppColors.primaryColor)),
+            color: disableButton ? getColorScheme(context).onSurfaceVariant : (borderColor ?? (fontColor ?? getColorScheme(context).primary)),
             width: 1.5,
           ),
         ),
@@ -105,7 +105,7 @@ class BorderButton extends StatelessWidget {
             : label.textWidget(
                 fontSize: labelFontSize,
                 fontWeight: FontWeight.w800,
-                color: disableButton ? AppColors.disableButtonBgColor : (fontColor ?? AppColors.primaryColor),
+                color: disableButton ? getColorScheme(context).onSurfaceVariant : (fontColor ?? getColorScheme(context).primary),
               ),
       ),
     );

@@ -4,10 +4,10 @@ import 'package:present_unit_flutter/helpers/text-style/text_style.dart';
 extension StringWidget on String {
   Widget textWidget({
     required double fontSize,
+    required Color color,
     TextAlign textAlign = TextAlign.start,
     int maxLines = 1,
     TextOverflow overflow = TextOverflow.visible,
-    Color? color,
     FontWeight fontWeight = FontWeight.w500,
   }) {
     return Text(

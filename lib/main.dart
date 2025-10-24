@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:present_unit_flutter/bloc/login/login_bloc.dart';
 import 'package:present_unit_flutter/bloc/theme_mode/theme_mode_bloc.dart';
 import 'package:present_unit_flutter/helpers/colors/theme.dart';
 import 'package:present_unit_flutter/routes/route_generator.dart';
 
 final RegExp passwordRegex = RegExp(r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
+
+ColorScheme getColorScheme(BuildContext context) {
+  final theme = Theme.of(context);
+  return theme.colorScheme;
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,9 +31,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ThemeModeBloc>(
-          create: (context) => ThemeModeBloc(),
-        ),
+        BlocProvider<ThemeModeBloc>(create: (context) => ThemeModeBloc()),
+        // BlocProvider<LoginCubit>(create: (context) => LoginCubit()),
       ],
       child: BlocBuilder<ThemeModeBloc, ThemeModeState>(
         builder: (context, state) {

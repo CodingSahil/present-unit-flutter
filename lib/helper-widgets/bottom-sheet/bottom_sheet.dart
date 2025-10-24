@@ -4,8 +4,7 @@ import 'dart:io';
 
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:present_unit_flutter/helper-widgets/text-field/labled_textform_field.dart';
-import 'package:present_unit_flutter/helpers/colors/app_color.dart';
+import 'package:present_unit_flutter/helper-widgets/text-field/labeled_app_text_field.dart';
 import 'package:present_unit_flutter/helpers/extension/double_widget.dart';
 import 'package:present_unit_flutter/helpers/extension/string_print.dart';
 import 'package:present_unit_flutter/helpers/extension/string_widget.dart';
@@ -36,21 +35,21 @@ Future<dynamic> showCommonBottomSheet({
   listOfItems.length.toString().logOnString('list => ');
   await showModalBottomSheet(
     context: context,
-    backgroundColor: AppColors.white,
+    backgroundColor: getColorScheme(context).surfaceBright,
     scrollControlDisabledMaxHeightRatio: 0.8,
     builder: (context) {
       return StatefulBuilder(
         builder: (context, setState) => listOfItems.isEmpty
-            ? Center(child: LabelStrings.noData.textWidget(fontSize: 16, color: AppColors.black))
+            ? Center(child: LabelStrings.noData.textWidget(fontSize: 16, color: getColorScheme(context).onSurface))
             : Column(
                 children: [
                   Container(
                     alignment: Alignment.center,
                     width: MediaQuery.sizeOf(context).width,
                     padding: EdgeInsets.symmetric(vertical: 28),
-                    child: title.textWidget(fontSize: 16, color: AppColors.primaryColor),
+                    child: title.textWidget(fontSize: 16, color: getColorScheme(context).primary),
                   ),
-                  Divider(color: AppColors.black.withAlpha((255 * 0.5).toInt()), thickness: 0.5, height: 1),
+                  Divider(color: getColorScheme(context).onSurface, thickness: 0.5, height: 1),
                   Expanded(
                     child: ListView(
                       padding: EdgeInsets.symmetric(vertical: 28, horizontal: 20),
@@ -61,10 +60,10 @@ Future<dynamic> showCommonBottomSheet({
                                 RadioListTile<String>(
                                   value: item.name,
                                   groupValue: selectValueLocal?.name,
-                                  activeColor: AppColors.primaryColor,
+                                  activeColor: getColorScheme(context).primary,
                                   title: item.name.textWidget(
                                     fontSize: 12,
-                                    color: AppColors.black,
+                                    color: getColorScheme(context).onSurface,
                                     fontWeight: FontWeight.w600,
                                   ),
                                   contentPadding: EdgeInsets.zero,
@@ -102,11 +101,18 @@ Future<dynamic> showCommonBottomSheet({
                       },
                       child: Container(
                         alignment: Alignment.center,
-                        decoration: BoxDecoration(color: AppColors.primaryColor, borderRadius: BorderRadius.circular(15)),
+                        decoration: BoxDecoration(
+                          color: getColorScheme(context).primary,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
                         width: MediaQuery.sizeOf(context).width,
                         margin: EdgeInsets.symmetric(horizontal: 50, vertical: 16),
                         padding: EdgeInsets.symmetric(vertical: 16),
-                        child: 'Submit'.textWidget(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.white),
+                        child: 'Submit'.textWidget(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: getColorScheme(context).surfaceBright,
+                        ),
                       ),
                     ),
                   if (Platform.isIOS) 24.height,
@@ -128,21 +134,21 @@ Future<dynamic> showCommonBottomSheetWithCheckBox({
   List<BottomSheetSelectionModel>? selectValueLocal = selectValue;
   await showModalBottomSheet(
     context: context,
-    backgroundColor: AppColors.white,
+    backgroundColor: getColorScheme(context).surfaceBright,
     scrollControlDisabledMaxHeightRatio: 0.8,
     builder: (context) {
       return StatefulBuilder(
         builder: (context, setState) => listOfItems.isEmpty
-            ? Center(child: LabelStrings.noData.textWidget(fontSize: 16, color: AppColors.black))
+            ? Center(child: LabelStrings.noData.textWidget(fontSize: 16, color: getColorScheme(context).onSurface))
             : Column(
                 children: [
                   Container(
                     alignment: Alignment.center,
                     width: MediaQuery.sizeOf(context).width,
                     padding: EdgeInsets.symmetric(vertical: 28),
-                    child: title.textWidget(fontSize: 16, color: AppColors.primaryColor),
+                    child: title.textWidget(fontSize: 16, color: getColorScheme(context).primary),
                   ),
-                  Divider(color: AppColors.black.withAlpha((255 * 0.5).toInt()), thickness: 0.5, height: 1),
+                  Divider(color: getColorScheme(context).onSurface, thickness: 0.5, height: 1),
                   Expanded(
                     child: ListView(
                       padding: EdgeInsets.symmetric(vertical: 28, horizontal: 20),
@@ -159,14 +165,14 @@ Future<dynamic> showCommonBottomSheetWithCheckBox({
                                   controlAffinity: ListTileControlAffinity.leading,
                                   title: item.name.textWidget(
                                     fontSize: 12,
-                                    color: AppColors.black,
+                                    color: getColorScheme(context).onSurface,
                                     fontWeight: FontWeight.w600,
                                   ),
                                   selected:
                                       selectValueLocal != null &&
                                       selectValueLocal!.isNotEmpty &&
                                       selectValueLocal!.any((element) => element.id == item.id),
-                                  activeColor: AppColors.primaryColor,
+                                  activeColor: getColorScheme(context).primary,
                                   onChanged: (value) {
                                     if (selectValueLocal != null && selectValueLocal!.isNotEmpty) {
                                       if (selectValueLocal!.any((element) => element.id == item.id)) {
@@ -205,11 +211,18 @@ Future<dynamic> showCommonBottomSheetWithCheckBox({
                     },
                     child: Container(
                       alignment: Alignment.center,
-                      decoration: BoxDecoration(color: AppColors.primaryColor, borderRadius: BorderRadius.circular(15)),
+                      decoration: BoxDecoration(
+                        color: getColorScheme(context).primary,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                       width: MediaQuery.sizeOf(context).width,
                       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 16),
                       padding: EdgeInsets.symmetric(vertical: 16),
-                      child: 'Submit'.textWidget(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.white),
+                      child: 'Submit'.textWidget(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: getColorScheme(context).surfaceBright,
+                      ),
                     ),
                   ),
                   if (Platform.isIOS) 24.height,
@@ -277,7 +290,7 @@ Future<dynamic> showAddEditStudentBottomSheet({
 
   await showModalBottomSheet(
     context: context,
-    backgroundColor: AppColors.white,
+    backgroundColor: getColorScheme(context).surfaceBright,
     scrollControlDisabledMaxHeightRatio: MediaQuery.sizeOf(context).height * 0.85,
     builder: (context) {
       return StatefulBuilder(
@@ -289,93 +302,99 @@ Future<dynamic> showAddEditStudentBottomSheet({
               alignment: Alignment.center,
               width: MediaQuery.sizeOf(context).width,
               padding: EdgeInsets.symmetric(vertical: 28),
-              child: title.textWidget(fontSize: 16, color: AppColors.primaryColor),
+              child: title.textWidget(fontSize: 16, color: getColorScheme(context).primary),
             ),
-            Divider(color: AppColors.black.withAlpha((255 * 0.5).toInt()), thickness: 0.5, height: 1),
+            Divider(color: getColorScheme(context).onSurface, thickness: 0.5, height: 1),
             SizedBox(height: 24),
             Expanded(
               child: ListView(
                 padding: EdgeInsets.symmetric(horizontal: 50),
                 children: [
-                  LabeledTextFormField(
+                  LabeledAppTextField(
+                    label: 'Student Roll No.',
                     controller: rollNumberController,
-                    hintText: 'Student Roll No.',
                     isError: isError && rollNumberController.text.isEmpty,
+                    errorText: "Student Roll No. is required",
                     textInputType: TextInputType.number,
                   ),
+
                   18.height,
-                  LabeledTextFormField(
+                  LabeledAppTextField(
                     controller: studentNameController,
-                    hintText: 'Student Name',
+                    label: 'Student Name',
                     isError: isError && studentNameController.text.isEmpty,
+                    textInputType: TextInputType.text,
                   ),
+
                   18.height,
-                  LabeledTextFormField(
+                  LabeledAppTextField(
                     controller: studentMobileNumberController,
-                    hintText: 'Student Mobile Number',
+                    label: 'Student Mobile Number',
                     textInputType: TextInputType.phone,
                     isError:
                         isError &&
                         (studentMobileNumberController.text.isEmpty || studentMobileNumberController.text.length < 10),
-                    errorMessage: studentMobileNumberController.text.length < 10 ? 'Enter Proper Mobile Number' : null,
+                    errorText: studentMobileNumberController.text.length < 10 ? 'Enter Proper Mobile Number' : null,
                   ),
+
                   18.height,
-                  LabeledTextFormField(
+                  LabeledAppTextField(
                     controller: studentEmailController,
-                    hintText: 'Student Email',
+                    label: 'Student Email',
                     textInputType: TextInputType.emailAddress,
                     isError:
                         isError &&
                         (studentEmailController.text.isEmpty ||
                             (studentEmailController.text.isNotEmpty &&
                                 !EmailValidator.validate(studentEmailController.text))),
-                    errorMessage:
+                    errorText:
                         (studentEmailController.text.isNotEmpty && !EmailValidator.validate(studentEmailController.text))
                         ? LabelStrings.emailIncorrect
                         : '${LabelStrings.email} ${LabelStrings.require}',
                   ),
+
                   18.height,
-                  LabeledTextFormField(
+                  LabeledAppTextField(
                     controller: studentPasswordController,
-                    hintText: 'Password',
-                    isPasswordField: true,
+                    label: 'Password',
+                    isPassword: true,
                     isError:
                         isError &&
                         (studentPasswordController.text.isEmpty ||
                             studentPasswordController.text.length < 6 ||
                             !passwordRegex.hasMatch(studentPasswordController.text)),
-                    errorMessage: !passwordRegex.hasMatch(studentPasswordController.text)
+                    errorText: !passwordRegex.hasMatch(studentPasswordController.text)
                         ? 'Password must contain at least:- 1 uppercase letter,\n1 lowercase letter, 1 number, 1 special character'
                         : studentPasswordController.text.length < 6
                         ? 'Password length must at least 6'
                         : '${LabelStrings.password} ${LabelStrings.require}',
-                    textInputType: TextInputType.text,
                   ),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Radio<String>(
                         value: "Male",
                         groupValue: selectedGender,
-                        activeColor: AppColors.primaryColor,
+                        activeColor: getColorScheme(context).primary,
                         onChanged: (value) {
                           setState(() {
                             selectedGender = value;
                           });
                         },
                       ),
-                      "Male".textWidget(fontSize: 14),
+                      "Male".textWidget(fontSize: 14, color: getColorScheme(context).onSurface),
                       Radio<String>(
                         value: "Female",
                         groupValue: selectedGender,
-                        activeColor: AppColors.primaryColor,
+                        activeColor: getColorScheme(context).primary,
                         onChanged: (value) {
                           setState(() {
                             selectedGender = value;
                           });
                         },
                       ),
-                      "Female".textWidget(fontSize: 14),
+                      "Female".textWidget(fontSize: 14, color: getColorScheme(context).onSurface),
                     ],
                   ),
                   36.height,
@@ -416,14 +435,21 @@ Future<dynamic> showAddEditStudentBottomSheet({
                     },
                     child: Container(
                       alignment: Alignment.center,
-                      decoration: BoxDecoration(color: AppColors.primaryColor, borderRadius: BorderRadius.circular(15)),
+                      decoration: BoxDecoration(
+                        color: getColorScheme(context).primary,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                       width: MediaQuery.sizeOf(context).width,
                       margin: EdgeInsets.symmetric(
                         // horizontal: 50,
                         vertical: 16,
                       ),
                       padding: EdgeInsets.symmetric(vertical: 16),
-                      child: 'Submit'.textWidget(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.white),
+                      child: 'Submit'.textWidget(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: getColorScheme(context).surfaceBright,
+                      ),
                     ),
                   ),
                 ],

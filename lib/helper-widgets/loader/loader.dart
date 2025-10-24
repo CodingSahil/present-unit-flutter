@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:present_unit_flutter/helpers/colors/app_color.dart';
+import 'package:present_unit_flutter/main.dart';
 
 class Loader extends StatelessWidget {
   const Loader({
@@ -15,7 +15,7 @@ class Loader extends StatelessWidget {
       height: 15,
       width: 15,
       child: CircularProgressIndicator(
-        color: color ?? AppColors.primaryColor,
+        color: color ?? getColorScheme(context).primary,
         strokeWidth: 2,
       ),
     );
@@ -41,7 +41,7 @@ class ButtonLoader extends StatelessWidget {
       width: width ?? 24,
       child: Center(
         child: Loader(
-          color: loaderColor ?? AppColors.white,
+          color: loaderColor ?? getColorScheme(context).surface,
         ),
       ),
     );
