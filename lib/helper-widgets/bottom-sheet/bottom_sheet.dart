@@ -10,10 +10,10 @@ import 'package:present_unit_flutter/helpers/extension/string_print.dart';
 import 'package:present_unit_flutter/helpers/extension/string_widget.dart';
 import 'package:present_unit_flutter/helpers/labels/label_strings.dart';
 import 'package:present_unit_flutter/main.dart';
-import 'package:present_unit_flutter/model/class_list/class_list_models.dart';
-import 'package:present_unit_flutter/model/college_registration/college_registration_models.dart';
-import 'package:present_unit_flutter/model/course/course_model.dart';
-import 'package:present_unit_flutter/model/navigation_models/common_models/bottomsheet_selection_model.dart';
+import 'package:present_unit_flutter/models/class_list/class_list_models.dart';
+import 'package:present_unit_flutter/models/college_registration/college_registration_models.dart';
+import 'package:present_unit_flutter/models/course/course_model.dart';
+import 'package:present_unit_flutter/models/navigation_models/common_models/bottomsheet_selection_model.dart';
 
 Future<dynamic> showCommonBottomSheet({
   required BuildContext context,

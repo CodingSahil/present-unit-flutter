@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:present_unit_flutter/model/validation_model/field_validation.dart';
+import 'package:present_unit_flutter/models/validation_model/field_validation.dart';
 
 part 'login_event.dart';
 
