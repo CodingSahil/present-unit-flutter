@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:present_unit_flutter/bloc/login/login_bloc.dart';
 import 'package:present_unit_flutter/bloc/theme_mode/theme_mode_bloc.dart';
 import 'package:present_unit_flutter/helpers/colors/theme.dart';
+import 'package:present_unit_flutter/helpers/database/supabase_client_keys.dart';
 import 'package:present_unit_flutter/routes/route_generator.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 final RegExp passwordRegex = RegExp(r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
+late final Supabase supabase;
 
 ColorScheme getColorScheme(BuildContext context) {
   final theme = Theme.of(context);
@@ -14,6 +17,7 @@ ColorScheme getColorScheme(BuildContext context) {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  supabase = await Supabase.initialize(url: SupabaseClientKeys.supabaseUrl, anonKey: SupabaseClientKeys.supabaseKey);
   runApp(const MyApp());
 }
 

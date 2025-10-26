@@ -71,16 +71,18 @@ class _AppTextFieldState extends State<AppTextField> {
       enableSuggestions: true,
       obscureText: isEyeOpened,
       inputFormatters: widget.textInputType == TextInputType.phone ? [LengthLimitingTextInputFormatter(10)] : [],
-      style: AppTextTheme.defaultTextStyle(fontSize: 15, color: getColorScheme(context).primary,),
+      style: AppTextTheme.defaultTextStyle(fontSize: 15, color: getColorScheme(context).primary),
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
         hint: widget.hint,
         contentPadding: widget.contentPadding ?? EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         enabled: widget.enabled,
-        error:
-            widget.isError
-                ? (widget.errorText ?? "Oops! This field can’t be left blank").textWidget(fontSize: 14,color: getColorScheme(context).error)
-                : null,
+        error: widget.isError
+            ? (widget.errorText ?? "Oops! This field can’t be left blank").textWidget(
+                fontSize: 14,
+                color: getColorScheme(context).error,
+              )
+            : null,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide(color: getColorScheme(context).primary, width: 1.5),
@@ -106,26 +108,30 @@ class _AppTextFieldState extends State<AppTextField> {
           borderSide: BorderSide(color: getColorScheme(context).error, width: 1.5),
         ),
         prefixIcon: widget.prefix,
-        suffixIcon:
-            widget.isPassword
-                ? GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    setState(() {
-                      isEyeOpened = !isEyeOpened;
-                    });
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                    child: SvgPicture.asset(
-                      isEyeOpened ? AssetsPaths.eyeOpenSVG : AssetsPaths.eyeCloseSVG,
-                      height: 16,
-                      width: 16,
-                      colorFilter: ColorFilter.mode(getColorScheme(context).onSurface, BlendMode.srcIn),
-                    ),
+        suffixIcon: widget.isPassword
+            ? GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  setState(() {
+                    isEyeOpened = !isEyeOpened;
+                  });
+                },
+                child: AnimatedSwitcher(
+                  duration: Duration(milliseconds: 500),
+                  transitionBuilder: (child, animation) => ScaleTransition(
+                    scale: CurvedAnimation(parent: animation, curve: Curves.easeOutBack),
+                    child: FadeTransition(opacity: animation, child: child),
                   ),
-                )
-                : widget.suffix,
+                  child: SvgPicture.asset(
+                    isEyeOpened ? AssetsPaths.eyeOpenSVG : AssetsPaths.eyeCloseSVG,
+                    key: ValueKey(isEyeOpened),
+                    height: 20,
+                    width: 20,
+                    colorFilter: ColorFilter.mode(getColorScheme(context).primary, BlendMode.srcIn),
+                  ),
+                ),
+              )
+            : widget.suffix,
         // suffix:
       ),
     );
